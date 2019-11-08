@@ -41,4 +41,51 @@ public class ShoppingCartTest {
         assertEquals(3, shoppingCart.getProductCount());
         assertEquals(690.0F, shoppingCart.getTotalAmount(), 0.0);
     }
+
+    @Test
+    public void shouldApplyBuyTwoGetOneOfferOnSelectedProduct() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        shoppingCart.setOffer(new BuyXItemGetXItemFreeOffer(2, 1));
+        shoppingCart.add(new Product("soap", 5, 50.0F));
+
+        assertEquals(1, shoppingCart.getProductCount());
+        assertEquals(200.0F, shoppingCart.getTotalAmount(), 0.0);
+    }
+
+    @Test
+    public void shouldApplyNoOfferOnSelectedProduct() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        shoppingCart.setOffer(new NoOffer());
+        shoppingCart.add(new Product("soap", 5, 50.0F));
+
+        assertEquals(1, shoppingCart.getProductCount());
+        assertEquals(250.0F, shoppingCart.getTotalAmount(), 0.0);
+    }
+
+    @Test
+    public void shouldApplyDifferentOffersForDifferentProducts() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        shoppingCart.setOffer(new BuyXItemGetXItemFreeOffer(2, 1));
+        shoppingCart.add(new Product("soap", 5, 50.0F));
+
+        shoppingCart.setOffer(new NoOffer());
+        shoppingCart.add(new Product("shampoo", 1, 200.0F));
+
+        assertEquals(2, shoppingCart.getProductCount());
+        assertEquals(400.0F, shoppingCart.getTotalAmount(), 0.0);
+    }
+
+    @Test
+    public void shouldApplyThirtyPercentOfferOnSelectedProduct() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+        shoppingCart.setOffer(new XPercentDiscountOffer(30));
+        shoppingCart.add(new Product("soap", 5, 50.0F));
+
+        assertEquals(1, shoppingCart.getProductCount());
+        assertEquals(175.0F, shoppingCart.getTotalAmount(), 0.0);
+    }
 }

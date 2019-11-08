@@ -1,12 +1,14 @@
 public class Product {
     private String name;
     private Integer quantity;
-    private Float price;
+    private Float unitPrice;
+    private Float totalPrice;
 
-    public Product(String name, Integer quantity, Float price) {
+    public Product(String name, Integer quantity, Float unitPrice) {
         this.name = name;
         this.quantity = quantity;
-        this.price = price;
+        this.unitPrice = unitPrice;
+        this.totalPrice = quantity * unitPrice;
     }
 
     public String getName() {
@@ -25,15 +27,19 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Float getPrice() {
-        return price;
+    public Float getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setUnitPrice(Float unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public Float getTotalPrice() {
-        return quantity * price;
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
