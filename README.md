@@ -1,3 +1,3 @@
 # shopping-cart
 
-Solution to typical shopping crt problem using TDD
+Solution to typical shopping cart problem using TDD
