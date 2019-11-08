@@ -3,12 +3,16 @@ public class Product {
     private Integer quantity;
     private Float unitPrice;
     private Float totalPrice;
+    private IOffer offer;
 
-    public Product(String name, Integer quantity, Float unitPrice) {
+    public Product(String name, Integer quantity, Float unitPrice, IOffer offer) {
         this.name = name;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
+        this.offer = offer;
         this.totalPrice = quantity * unitPrice;
+
+        offer.apply(this);
     }
 
     public String getName() {
